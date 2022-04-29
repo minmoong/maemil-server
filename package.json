@@ -1,0 +1,15 @@
+{
+  "name": "namsunin-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "denon run --unstable --allow-env --allow-read --allow-net server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "comcigan-parser": "^1.0.0"
+  }
+}

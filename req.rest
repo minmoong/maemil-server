@@ -1,0 +1,37 @@
+# vscode에서 rest client 익스텐션을 설치한 뒤 진행하세요.
+# request 보낼 때 POST request 일 경우 routes 들의 JSON.parse 함수를 제거한 뒤 보내세요.
+
+GET http://localhost:5000/getTimetable
+
+###
+
+POST http://localhost:5000/getMeal
+Content-Type: application/json
+
+{
+    "date": "20210923"
+}
+
+###
+
+POST http://localhost:5000/getSchedule
+Content-Type: application/json
+
+{
+    "start_day": "20220220",
+    "end_day": "20220402"
+}
+
+###
+
+GET http://localhost:5000/getTimetable
+
+###
+
+POST http://localhost:5000/regTodo
+Content-Type: application/json
+
+{
+    "analyze_mode": false,
+    "content": "5/1 사회 수행평가 준비하기"
+}
