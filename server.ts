@@ -3,7 +3,8 @@ import { oakCors } from 'https://deno.land/x/cors@v1.2.2/mod.ts'
 import getMeal from './routes/getMeal.ts'
 import getTimetable from './routes/getTimetable.ts'
 import getSchedule from './routes/getSchedule.ts'
-import regTodo from './routes/regTodo.ts'
+import regTodo from './routes/Todo/regTodo.ts'
+import removeTodo from './routes/Todo/removeTodo.ts'
 
 const app = new Application()
 const router = new Router()
@@ -18,5 +19,6 @@ router
   .post('/getMeal', getMeal)
   .post('/getSchedule', getSchedule)
   .post('/regTodo', regTodo)
+  .post('/removeTodo', removeTodo)
 
 await app.listen({ port: 5000 })

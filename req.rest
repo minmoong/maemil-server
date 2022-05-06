@@ -35,3 +35,7 @@ Content-Type: application/json
     "analyze_mode": false,
     "content": "5/1 사회 수행평가 준비하기"
 }
+
+###
+
+GET http://localhost:5000/getTodo

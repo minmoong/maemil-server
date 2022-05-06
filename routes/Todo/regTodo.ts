@@ -1,5 +1,5 @@
 async function regTodo(ctx: any) {
-  const { analyze_mode, content } = /*JSON.parse(*/await ctx.request.body().value/*)*/
+  const { analyze_mode, desc } = await ctx.request.body().value
 
   // function getClientInfo() {
   //   let info
@@ -7,7 +7,7 @@ async function regTodo(ctx: any) {
   // }
 
   console.log(analyze_mode)
-  console.log(content)
+  console.log(desc)
 
   // if success
   return ctx.response.body = { success: true }
