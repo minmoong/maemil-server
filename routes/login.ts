@@ -1,12 +1,16 @@
-import { create } from "https://deno.land/x/djwt@v2.4/mod.ts"
+import { create } from 'https://deno.land/x/djwt@v2.4/mod.ts'
 
 async function login(ctx: any) {
     const { id, password } = await ctx.request.body().value
 
     let users = [ // 테스트용 데이터
         {
-            id: "minmoong",
-            password: "minmoong"
+            id: 'minmoong',
+            password: 'minmoong'
+        },
+        {
+            id: 'afosvpaqa',
+            password: '#07fas.1'
         }
     ]
 
