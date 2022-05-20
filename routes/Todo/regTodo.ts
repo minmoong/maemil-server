@@ -1,15 +1,11 @@
-async function regTodo(ctx: any) {
-  const { analyze_mode, desc } = await ctx.request.body().value
+import { RouterContext } from 'https://deno.land/x/oak@v10.2.0/mod.ts'
 
-  // function getClientInfo() {
-  //   let info
-  //   return info
-  // }
+async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
+  const { analyze_mode, desc } = await ctx.request.body().value
 
   console.log(analyze_mode)
   console.log(desc)
 
-  // if success
   return ctx.response.body = { success: true }
 }
 

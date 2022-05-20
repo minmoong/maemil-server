@@ -1,6 +1,3 @@
-# vscode에서 rest client 익스텐션을 설치한 뒤 진행하세요.
-# request 보낼 때 POST request 일 경우 routes 들의 JSON.parse 함수를 제거한 뒤 보내세요.
-
 GET http://localhost:5000/getTimetable
 
 ###
@@ -42,10 +39,24 @@ GET http://localhost:5000/getTodo
 
 ###
 
-POST http://localhost:5000/login
+POST http://localhost:5000/api/session/register
 Content-Type: application/json
 
 {
-    "id": "minmoong",
-    "password": "minmoong"
+    "id": "",
+    "password": ""
 }
+
+###
+
+POST http://localhost:5000/api/session/login
+Content-Type: application/json
+
+{
+    "id": "",
+    "password": ""
+}
+
+###
+
+GET http://localhost:5000/api/session/auth
