@@ -8,8 +8,7 @@ const timetable = new Timetable()
 async function getTimetable(ctx: RouterContext<'/api/getTimetable'>) {
     await timetable.init()
     await timetable.setSchool(65332)
-    ctx.response.body = await timetable.getTimetable()
-    return
+    return ctx.response.body = await timetable.getTimetable()
 }
 
 export default getTimetable

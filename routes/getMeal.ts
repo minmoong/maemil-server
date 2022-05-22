@@ -15,11 +15,9 @@ async function getMeal(ctx: RouterContext<'/api/getMeal'>) {
     }
     const mealList = await fetch(reqUrl).then(thenHandle)
     if (mealList === null) {
-        ctx.response.body = { success: false }
-        return
+        return ctx.response.body = { success: false }
     }
-    ctx.response.body = { success: true, mealList }
-    return
+    return ctx.response.body = { success: true, mealList }
 }
 
 export default getMeal

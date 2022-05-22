@@ -8,19 +8,17 @@ async function login(ctx: RouterContext<'/api/session/login'>) {
 
     const user = users.filter(user => id === user.id)[0]
     if(!user) {
-        ctx.response.body = {
+        return ctx.response.body = {
             success: false,
             message: '존재하지 않는 아이디 입니다.'
         }
-        return
     }
 
     if(!await bcrypt.compare(password, user.password)) {
-        ctx.response.body = {
+        return ctx.response.body = {
             success: false,
             message: '비밀번호가 일치하지 않습니다.'
         }
-        return
     }
 
     const header: Header = {
@@ -43,8 +41,7 @@ async function login(ctx: RouterContext<'/api/session/login'>) {
     const jwt = await create(header, payload, key)
 
     ctx.cookies.set('jwt', jwt, { httpOnly: true })
-    ctx.response.body = { success: true, id: user.id }
-    return
+    return ctx.response.body = { success: true, id: user.id }
 }
   
 export default login

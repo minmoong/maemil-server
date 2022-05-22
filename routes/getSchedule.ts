@@ -16,11 +16,9 @@ async function getSchedule(ctx: RouterContext<'/api/getSchedule'>) {
     }
     const scheduleList = await fetch(reqUrl).then(thenHandle)
     if (scheduleList === null) {
-        ctx.response.body = { success: false }
-        return
+        return ctx.response.body = { success: false }
     }
-    ctx.response.body = { success: true, scheduleList }
-    return
+    return ctx.response.body = { success: true, scheduleList }
 }
 
 export default getSchedule

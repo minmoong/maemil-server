@@ -5,6 +5,7 @@ import getTimetable from './routes/getTimetable.ts'
 import getSchedule from './routes/getSchedule.ts'
 import regTodo from './routes/todo/regTodo.ts'
 import removeTodo from './routes/todo/removeTodo.ts'
+import getTodo from './routes/todo/getTodo.ts'
 import register from './routes/session/register.ts'
 import login from './routes/session/login.ts'
 import auth from './routes/session/auth.ts'
@@ -27,6 +28,7 @@ router
     /* todo */
     .post('/api/todo/regTodo', regTodo)
     .post('/api/todo/removeTodo', removeTodo)
+    .post('/api/todo/getTodo', getTodo)
     /* session */
     .post('/api/session/register', register)
     .post('/api/session/login', login)

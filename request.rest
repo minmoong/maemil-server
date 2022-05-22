@@ -60,3 +60,13 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/api/session/auth
+
+###
+
+POST http://localhost:5000/api/todo/getTodo
+Content-Type: application/json
+
+{
+    "grade": 3,
+    "group": 1
+}
