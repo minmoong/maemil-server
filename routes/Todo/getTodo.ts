@@ -1,19 +1,26 @@
 import { RouterContext } from 'https://deno.land/x/oak@v10.2.0/mod.ts'
-import todos from '../../db/todos.ts'
+import client from '../../db/client.ts'
 
 async function getTodo(ctx: RouterContext<'/api/todo/getTodo'>) {
-    const { grade, group }: {
-        grade: keyof typeof todos;
-        group: keyof typeof todos[keyof typeof todos];
-    } = await ctx.request.body().value
+    const { grade, group } = await ctx.request.body().value
 
-    if(!Object.prototype.hasOwnProperty.call(todos, grade)) {
-        return ctx.response.body = []
-    } else if(!Object.prototype.hasOwnProperty.call(todos[grade], group)) {
-        return ctx.response.body = []
+    try {
+        const result = await client.execute(
+            'SELECT todos FROM todos WHERE grd=? AND grp=?',
+            [grade, group]
+        )
+
+        if((result as any)[0]?.todos === undefined) {
+            ctx.response.body = { success: true, data: '[]' }
+        } else {
+            ctx.response.body = { success: true, data: (result.rows as any)[0].todos }
+        }
+
+        
+    } catch (e) {
+        console.log(e.toString())
+        ctx.response.body = { success: false }
     }
-
-    ctx.response.body = todos[grade][group]
 }
 
 export default getTodo

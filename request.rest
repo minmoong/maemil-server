@@ -25,17 +25,14 @@ GET http://localhost:5000/getTimetable
 
 ###
 
-POST http://localhost:5000/regTodo
+POST http://localhost:5000/api/todo/regTodo
 Content-Type: application/json
 
 {
-    "analyze_mode": false,
-    "content": "5/1 사회 수행평가 준비하기"
+    "grade": "2",
+    "group": "1",
+    "desc": "aa"
 }
-
-###
-
-GET http://localhost:5000/getTodo
 
 ###
 
@@ -67,6 +64,56 @@ POST http://localhost:5000/api/todo/getTodo
 Content-Type: application/json
 
 {
-    "grade": 3,
-    "group": 1
+    "grade": "3",
+    "group": "1"
+}
+
+###
+
+POST http://localhost:5000/api/board/getBoard
+Content-Type: application/json
+
+{
+    "arc": 0
+}
+
+###
+
+POST http://localhost:5000/api/regBoard
+Content-Type: application/json
+
+{
+    "div": "자유글",
+    "title": "이겈",
+    "uploader": "민뭉",
+    "contents": "두근두근!"
+}
+
+###
+
+POST http://localhost:5000/api/removeBoard
+Content-Type: application/json
+
+{
+    "boardId": "ibpywyww6D"
+}
+
+###
+
+POST http://localhost:5000/api/board/getArticle
+Content-Type: application/json
+
+{
+    "href": "/Dk1TA6yc79"
+}
+
+###
+
+POST http://localhost:5000/api/todo/removeTodo
+Content-Type: application/json
+
+{
+    "grade": "3",
+    "group": "1",
+    "todoId": "1BzFbnZSbU"
 }

@@ -9,6 +9,12 @@ import getTodo from './routes/todo/getTodo.ts'
 import register from './routes/session/register.ts'
 import login from './routes/session/login.ts'
 import auth from './routes/session/auth.ts'
+import getBoard from './routes/board/getBoard.ts'
+import regBoard from './routes/board/regBoard.ts'
+import removeBoard from './routes/board/removeBoard.ts'
+import regComment from './routes/board/regComment.ts'
+import removeComment from './routes/board/removeComment.ts'
+import getArticle from './routes/board/getArticle.ts'
 
 const app = new Application()
 const router = new Router()
@@ -33,5 +39,12 @@ router
     .post('/api/session/register', register)
     .post('/api/session/login', login)
     .get('/api/session/auth', auth)
+    /* board */
+    .post('/api/board/getBoard', getBoard)
+    .post('/api/board/regBoard', regBoard)
+    .post('/api/board/removeBoard', removeBoard)
+    .post('/api/board/regComment', regComment)
+    .post('/api/board/removeComment', removeComment)
+    .post('/api/board/getArticle', getArticle)
 
 await app.listen({ port: 5000 })
