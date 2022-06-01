@@ -7,26 +7,26 @@ async function removeTodo(ctx: RouterContext<'/api/todo/removeTodo'>) {
         desc: string;
     }
 
-    const { grade, group, todoId } = await ctx.request.body().value
+    const { grd, grp, todoId } = await ctx.request.body().value
 
     try {
         const result = (await client.execute(
             'SELECT todos FROM todos WHERE grd=? AND grp=?',
-            [grade, group]
-        )).rows
+            [grd, grp]
+        ))
         
-        let todos: Todo[] = JSON.parse((result as any)[0].todos)
+        let todos: Todo[] = JSON.parse((result.rows as any)[0].todos)
         todos = todos.filter(todo => todo.todoId !== todoId)
 
         if(todos.length === 0) {
             await client.execute(
                 'DELETE FROM todos WHERE grd=? AND grp=?',
-                [grade, group]
+                [grd, grp]
             )
         } else {
             await client.execute(
                 'UPDATE todos SET todos=? WHERE grd=? AND grp=?',
-                [JSON.stringify(todos), grade, group]
+                [JSON.stringify(todos), grd, grp]
             )
         }
 

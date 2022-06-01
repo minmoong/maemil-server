@@ -117,3 +117,13 @@ Content-Type: application/json
     "group": "1",
     "todoId": "1BzFbnZSbU"
 }
+
+###
+
+POST http://localhost:5000/api/fcm/regFCMToken
+Content-Type: application/json
+
+{
+    "token": "dxa58sklFcINYPZK6adAas:APA91bFVKwVSXDumLNqTD4YqbxASo8kgG6WIGuM0BEsXJU9-KWm6tWVSaTQMHJHmgwCic31beCZRVjDr6oan4hY02PUJ2XwKCcVFpEB3vPzy8VuNaiPPZJyCCtaQyrq4IvUUPH5ddAUU",
+    "timetableLatestGrdp": "3-1"
+}

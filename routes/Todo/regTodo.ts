@@ -2,12 +2,12 @@ import { RouterContext } from 'https://deno.land/x/oak@v10.2.0/mod.ts'
 import client from '../../db/client.ts'
 
 async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
-    const { grade, group, todoId, desc } = await ctx.request.body().value
+    const { grd, grp, todoId, desc } = await ctx.request.body().value
 
     try {
         const result = (await client.execute(
             'SELECT todos FROM todos WHERE grd=? AND grp=?',
-            [grade, group]
+            [grd, grp]
         )).rows
 
         if((result as any)[0]?.todos === undefined) {
@@ -15,7 +15,7 @@ async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
 
             await client.execute(
                 'INSERT INTO todos (grd, grp, todos) VALUES (?, ?, ?)',
-                [grade, group, todos]
+                [grd, grp, todos]
             )
         } else {
             let todos = JSON.parse((result as any)[0].todos)
@@ -23,7 +23,7 @@ async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
 
             await client.execute(
                 'UPDATE todos SET todos=? WHERE grd=? AND grp=?',
-                [JSON.stringify(todos), grade, group]
+                [JSON.stringify(todos), grd, grp]
             )
         }
 

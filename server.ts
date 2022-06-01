@@ -15,6 +15,10 @@ import removeBoard from './routes/board/removeBoard.ts'
 import regComment from './routes/board/regComment.ts'
 import removeComment from './routes/board/removeComment.ts'
 import getArticle from './routes/board/getArticle.ts'
+import regFCMToken from './routes/fcm/regFCMToken.ts'
+
+import sendMessage from './routes/fcm/sendMessage.ts'
+sendMessage()
 
 const app = new Application()
 const router = new Router()
@@ -46,5 +50,7 @@ router
     .post('/api/board/regComment', regComment)
     .post('/api/board/removeComment', removeComment)
     .post('/api/board/getArticle', getArticle)
+    /* FCM */
+    .post('/api/fcm/regFCMToken', regFCMToken)
 
 await app.listen({ port: 5000 })
