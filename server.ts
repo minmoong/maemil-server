@@ -15,9 +15,10 @@ import removeBoard from './routes/board/removeBoard.ts'
 import regComment from './routes/board/regComment.ts'
 import removeComment from './routes/board/removeComment.ts'
 import getArticle from './routes/board/getArticle.ts'
-import regFCMToken from './routes/fcm/regFCMToken.ts'
+import registerToken from './routes/useMessage/registerToken.ts'
+import updateGrdp from './routes/useMessage/updateGrdp.ts'
 
-import sendMessage from './routes/fcm/sendMessage.ts'
+import sendMessage from './routes/useMessage/sendMessage.ts'
 sendMessage()
 
 const app = new Application()
@@ -51,6 +52,8 @@ router
     .post('/api/board/removeComment', removeComment)
     .post('/api/board/getArticle', getArticle)
     /* FCM */
-    .post('/api/fcm/regFCMToken', regFCMToken)
+    .post('/api/useMessage/registerToken', registerToken)
+    .post('/api/useMessage/updateGrdp', updateGrdp)
 
+console.log('[*] Server Start')
 await app.listen({ port: 5000 })
