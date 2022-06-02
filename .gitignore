@@ -1,5 +1,5 @@
 /node_modules
 
 # custom
-db/client.ts
+/db
 .env
