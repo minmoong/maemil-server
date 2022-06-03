@@ -55,5 +55,5 @@ router
     .post('/api/useMessage/registerToken', registerToken)
     .post('/api/useMessage/updateGrdp', updateGrdp)
 
-console.log('[*] Server Start')
-await app.listen({ port: 5000 })
+console.log('[*] Server start')
+await app.listen({ port: 3000 })
