@@ -49,7 +49,7 @@ async function getBody(grdp: string) {
 }
 
 function sendMessage() {
-    cron('0 0 7 * * 1-6', async () => {
+    cron('0 0 7 * * 1-5', async () => {
         const useMessageData = (await client.execute('SELECT token, grdp FROM use_message') as any).rows
         for(const { token, grdp } of useMessageData) {
             await fetch('https://fcm.googleapis.com/fcm/send', {

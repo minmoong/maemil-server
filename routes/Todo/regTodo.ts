@@ -19,7 +19,7 @@ async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
             )
         } else {
             let todos = JSON.parse((result as any)[0].todos)
-            todos.push({ todoId, desc, createdAt: new Date() })
+            todos = [{ todoId, desc, createdAt: new Date() }, ...todos]
 
             await client.execute(
                 'UPDATE todos SET todos=? WHERE grd=? AND grp=?',
