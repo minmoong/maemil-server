@@ -16,7 +16,9 @@ async function getMeal() {
         if(!Object.prototype.hasOwnProperty.call(data, 'mealServiceDietInfo')) return null
         return data.mealServiceDietInfo[1].row[0].DDISH_NM.replaceAll(/\(([^)]+)\)/g, '').replaceAll(' ', '').split('<br/>')
     }
-    return (await fetch(reqUrl).then(thenHandle)).join(', ')
+    const result = await fetch(reqUrl).then(thenHandle)
+    if (result === null) return '급식 정보가 없습니다.'
+    else return result.join(', ')
 }
 
 async function getTimetable(grdp: any) {
@@ -29,11 +31,15 @@ async function getTimetable(grdp: any) {
     grdp = grdp.split('-')
 
     let data: string[] = [];
-    (await timetable.getTimetable())[grdp[0]][grdp[1]][new Date().getDay()-1].forEach((t: any) => {
-        if (t.subject !== '') data.push(t.subject)
-    })
 
-    return data.join(', ')
+    if (new Date().getDay() === 6 || new Date().getDay() === 7) return '시간표 정보가 없습니다.'
+    else {
+        (await timetable.getTimetable())[grdp[0]][grdp[1]][new Date().getDay()-1].forEach((t: any) => {
+            if (t.subject !== '') data.push(t.subject)
+        })
+    
+        return data.join(', ')
+    }
 }
 
 async function getBody(grdp: string) {
@@ -43,7 +49,7 @@ async function getBody(grdp: string) {
 }
 
 function sendMessage() {
-    cron('0 0 7 * * *', async () => {
+    cron('0 0 7 * * 1-5', async () => {
         const useMessageData = (await client.execute('SELECT token, grdp FROM use_message') as any).rows
         for(const { token, grdp } of useMessageData) {
             await fetch('https://fcm.googleapis.com/fcm/send', {
@@ -57,7 +63,7 @@ function sendMessage() {
                     notification: {
                         title: "오늘의 급식&시간표! 😀",
                         body: await getBody(grdp),
-                        click_action: "https://devminmoong.cafe24.com",
+                        click_action: "https://maemil.kr",
                         icon: "https://user-images.githubusercontent.com/62737839/171646163-7d57fdaf-24ad-4061-8612-2349e748e41f.png"
                     }
                 })
