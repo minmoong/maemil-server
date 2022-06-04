@@ -11,7 +11,7 @@ async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
         )).rows
 
         if((result as any)[0]?.todos === undefined) {
-            const todos = JSON.stringify([{ todoId, desc }])
+            const todos = JSON.stringify([{ todoId, desc, createdAt: new Date() }])
 
             await client.execute(
                 'INSERT INTO todos (grd, grp, todos) VALUES (?, ?, ?)',
@@ -19,7 +19,7 @@ async function regTodo(ctx: RouterContext<'/api/todo/regTodo'>) {
             )
         } else {
             let todos = JSON.parse((result as any)[0].todos)
-            todos.push({ todoId, desc })
+            todos.push({ todoId, desc, createdAt: new Date() })
 
             await client.execute(
                 'UPDATE todos SET todos=? WHERE grd=? AND grp=?',

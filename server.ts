@@ -26,7 +26,7 @@ const router = new Router()
 
 app
     .use(oakCors({
-        origin: 'https://maemil.kr',
+        origin: '*',
         credentials: true
     }))
     .use(router.routes())

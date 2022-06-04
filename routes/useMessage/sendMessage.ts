@@ -49,7 +49,7 @@ async function getBody(grdp: string) {
 }
 
 function sendMessage() {
-    cron('0 0 7 * * 1-5', async () => {
+    cron('0 0 7 * * 1-6', async () => {
         const useMessageData = (await client.execute('SELECT token, grdp FROM use_message') as any).rows
         for(const { token, grdp } of useMessageData) {
             await fetch('https://fcm.googleapis.com/fcm/send', {
@@ -61,7 +61,7 @@ function sendMessage() {
                 body: JSON.stringify({
                     to: token,
                     notification: {
-                        title: "오늘의 급식&시간표! 😀",
+                        title: "오늘의 급식&시간표! ",
                         body: await getBody(grdp),
                         click_action: "https://maemil.kr",
                         icon: "https://user-images.githubusercontent.com/62737839/171646163-7d57fdaf-24ad-4061-8612-2349e748e41f.png"
